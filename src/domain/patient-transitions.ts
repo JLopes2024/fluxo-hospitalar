@@ -1,0 +1,46 @@
+import { PatientStatus } from "./patient-status";
+
+export const allowedTransitions: Record<
+  PatientStatus,
+  PatientStatus[]
+> = {
+  CHEGADA_TOTEM: ["AGUARDANDO_TRIAGEM"],
+
+  AGUARDANDO_TRIAGEM: [
+    "EM_TRIAGEM",
+    "SAIDA_ANTECIPADA",
+  ],
+
+  EM_TRIAGEM: ["AGUARDANDO_RECEPCAO"],
+
+  AGUARDANDO_RECEPCAO: [
+    "AGUARDANDO_MEDICO",
+    "SAIDA_ANTECIPADA",
+  ],
+
+  AGUARDANDO_MEDICO: [
+    "EM_ATENDIMENTO",
+    "SAIDA_ANTECIPADA",
+  ],
+
+  EM_ATENDIMENTO: [
+    "ALTA",
+    "INTERNACAO",
+    "EM_EXAME",
+    "EM_MEDICACAO",
+    "EM_EXAME_MEDICACAO",
+  ],
+
+  EM_EXAME: ["AGUARDANDO_RETORNO_MEDICO"],
+  EM_MEDICACAO: ["AGUARDANDO_RETORNO_MEDICO"],
+  EM_EXAME_MEDICACAO: ["AGUARDANDO_RETORNO_MEDICO"],
+
+  AGUARDANDO_RETORNO_MEDICO: [
+    "EM_ATENDIMENTO",
+    "SAIDA_ANTECIPADA",
+  ],
+
+  ALTA: [],
+  INTERNACAO: [],
+  SAIDA_ANTECIPADA: [],
+};
